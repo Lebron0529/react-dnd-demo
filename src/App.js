@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
-function App() {
+import Dustbin from "./components/Dustbin";
+import Box from "./components/Box";
+
+//将HTMLBackend 作为参数传给DragDropContext
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <div style={{ paddingLeft: 200, paddingTop: 50 }}>
+        <div style={{ overflow: "hidden", clear: "both" }}>
+          <Box name="Glass" />
+          <Box name="Banana" />
+          <Box name="Paper" />
+        </div>
+        <div style={{ overflow: "hidden", clear: "both" }}>
+          <Dustbin />
+        </div>
+      </div>
+    </DndProvider>
   );
-}
+};
 
 export default App;
